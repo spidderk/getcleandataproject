@@ -1,8 +1,8 @@
 # Code Book
 
-This document describes the variables, data, and transformations performed to tidy the data associated with the course project.
+This document describes the variables, data, and transformations performed to tidy the data associated with the course project as described in the [README.md](./README.md).
 
-The code is annotated with steps (e.g. Step 1, Step 2, etc.) and substeps (e.g 1.1, 1.2, etc) that correspond to the project description steps.
+The code in [run_analysis.R](./run_analysis.R) is annotated with steps (e.g. Step 1, Step 2, etc.) and substeps (e.g 1.1, 1.2, etc) that correspond to the project description steps as follows:
 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement.

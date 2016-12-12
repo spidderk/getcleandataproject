@@ -1,6 +1,7 @@
 # Course Project for Getting and Cleaning Data
 ## Introduction
-This repo contains the R script and descriptions necessary to complete the course project for the [Getting and Cleaning Data]() course.
+This repo contains the R script and descriptions necessary to complete the course project for the 
+[Getting and Cleaning Data course project](https://www.coursera.org/learn/data-cleaning/peer/FIZtT/getting-and-cleaning-data-course-project).
 
 All of the code necessary to complete the project is contained in the [run_analysis.R](./run_analysis.R) script.
 
