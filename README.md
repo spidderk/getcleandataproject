@@ -19,7 +19,7 @@ See the [./CodeBook.md](./CodeBook.md) file for additional information about the
 ```R
     source("run_analysis.R")
 ```
-3. Look at final result at ./cleaning_data_project.txt
+3. Final result located at ./cleaning_data_project.txt
 
 
 ## Further Instructions for Assessors
