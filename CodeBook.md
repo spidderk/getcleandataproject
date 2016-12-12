@@ -175,7 +175,7 @@ Variable | Description | Class
 ---------|-------------|------
 msidx | table of indices and names for mean and std features in the dataset | data.table data.frame
 
-msidx detail:
+msidx detail
 idx | feature
 ------|------------
 1 | tBodyAccmeanX
@@ -297,7 +297,7 @@ sumbyact | table of means of variables grouped by activity | tbl_df tbl data.fra
 ### 5.2 Make the grouping variable a factor with descriptive names
 Using dplyr function mutate and R function factor().
 
-sumbyact$activity factors:
+sumbyact$activity factors
 index | value
 ------|------
 1 | Mean of WALKING
@@ -307,7 +307,7 @@ index | value
 5 | Mean of STANDING
 6 | Mean of LAYING
 
-sumbysub$subject factors:
+sumbysub$subject factors
 index | value
 ------|------
 1 | Mean of Subject 1
@@ -354,7 +354,7 @@ summarydata | combined table of grouped means | tbl_df tbl data.frame
 summarydata[1:6,] | table of means of variables grouped by activity | tbl_df tbl data.frame
 summarydata[7:36,] | table of means of variables grouped by subject | tbl_df tbl data.frame
 
-summarydata$SummaryStatistic factor: 
+summarydata$SummaryStatistic factors
 index | value
 ------|------
 1 | Mean of WALKING
