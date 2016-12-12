@@ -176,8 +176,9 @@ Variable | Description | Class
 msidx | table of indices and names for mean and std features in the dataset | data.table data.frame
 
 msidx detail
+
 idx | feature
-------|------------
+----|--------
 1 | tBodyAccmeanX
 2 | tBodyAccmeanY
 3 | tBodyAccmeanZ
@@ -298,7 +299,8 @@ sumbyact | table of means of variables grouped by activity | tbl_df tbl data.fra
 Using dplyr function mutate and R function factor().
 
 sumbyact$activity factors
-index | value
+
+Index | Value
 ------|------
 1 | Mean of WALKING
 2 | Mean of WALKING_UPSTAIRS
@@ -308,7 +310,8 @@ index | value
 6 | Mean of LAYING
 
 sumbysub$subject factors
-index | value
+
+Index | Value
 ------|------
 1 | Mean of Subject 1
 2 | Mean of Subject 2
@@ -355,7 +358,8 @@ summarydata[1:6,] | table of means of variables grouped by activity | tbl_df tbl
 summarydata[7:36,] | table of means of variables grouped by subject | tbl_df tbl data.frame
 
 summarydata$SummaryStatistic factors
-index | value
+
+Index | Value
 ------|------
 1 | Mean of WALKING
 2 | Mean of WALKING_UPSTAIRS
