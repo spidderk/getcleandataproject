@@ -1,7 +1,10 @@
 # get the needed libraries -- if these are not installed, call:
+# install.packages("data.table")
 # install.packages("dplyr")
-# install.packages("lubridate")
+# install.packages("dtplyr")
 
+library(data.table)
+library(dplyr)
 library(dtplyr)
 
 # Additional Information:
@@ -140,7 +143,7 @@ lsdsubset <- mutate(lsdsubset, activity = factor(activity,labels=actlabels$activ
 
 # Step 3 Result: lsdsubset activities coulumn contains named factors
 
-# Step 4: Descriptive Variable Names
+# Step 4: Add Descriptive Variable Names
 print("Adding descriptive variable names")
 
 # Note this was partially completed earlier by extracting the variable names from the 
@@ -180,11 +183,6 @@ print("Creating summary data")
 
 # 5.1 Group the data by subject and activity and generate summaries using dplyr.
 # Remove any unnecessary grouping variables. Make use of pipeline operator (%>%).
-#bysub <- group_by(dlssubset, subject)
-#sumbysub <- summarize_each(bysub, funs(mean(., na.rm=TRUE)), -type, -activity)
-#byact <- group_by(dlssubset, activity)
-#sumbyact <- summarize_each(byact, funs(mean(., na.rm=TRUE)), -type, -subject)
-
 sumbysub <- lsdsubset %>% group_by(subject) %>% 
             summarize_each(funs(mean(., na.rm=TRUE)), -type, -activity)
 sumbyact <- lsdsubset %>% group_by( activity) %>%
@@ -199,7 +197,7 @@ sumbyact <- mutate(sumbyact, activity = factor(activity,labels=paste("Mean of",a
 colnames(sumbysub)[1] <- "SummaryStatistic"
 colnames(sumbyact)[1] <- "SummaryStatistic"
 
-# 5.4 Combine the summary tables into a single table
+# 5.4 Combine the summary tables into a single table.
 summarydata <- rbind(sumbyact,sumbysub)
 
 # Here we have a tidy table, where the SummaryStatistic column gives a clear indication
@@ -223,4 +221,4 @@ print(outfile)
 # Step 5 Result: The summary dataset has been written to cleaning_data_project.txt.
 
 # To read the file back in for validation
-#myd <- read.table(outfile, header=TRUE)
+#valdata <- read.table(outfile, header=TRUE)

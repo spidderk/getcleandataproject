@@ -21,12 +21,12 @@ library(dtplyr)
 
 ### 1.1 Get the zip file Url to download from.
 Variable | Description | Class
-------------------------------
+---------|-------------------
 fileUrl | "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip" | character
 
 ### 1.2 Download zip file.
 File | Description
-------------------
+-----|------------
 human_activity_data.zip | zipped project data
 
 ### 1.3 Unzip to "UCI HAR Dataset" directory
@@ -37,7 +37,7 @@ The test subdirectory contains the test data, labels, and subjects.
 
 ### 1.4 Create variables to point to files of interest.
 Name | Filepath | Description
------------------------------
+-----|----------|------------
 train_data_file | ./UCI HAR Dataset/train/X_train.txt | training data
 train_labels_file | ./UCI HAR Dataset/train/y_train.txt | training labels
 train_subjects_file | ./UCI HAR Dataset/train/subject_train.txt | training subjects 
@@ -51,7 +51,7 @@ activity_labels_file | ./UCI HAR Dataset/activity_labels.txt | activity indices 
 Using R function read.table() with stringsAsFactors = FALSE
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 trd | training data | data.frame
 trl | training labels | data.frame
 trs | training subjects | data.frame
@@ -63,21 +63,21 @@ Using R function colnames().
 Using R function cbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 trlsd | column merged training labels, subjects, data  | data.frame
 
 ### 1.8 Add a type column to the training data. Used to distinguish from test data.
 Using dplyr function mutate() and R function cbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 trlsd | column merged training type, labels, subjects, data  | data.frame
 
 ### 1.9 Read in the test data
 Using R function read.table() with stringsAsFactors = FALSE
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 ted | training data | data.frame
 tel | training labels | data.frame
 tes | training subjects | data.frame
@@ -89,21 +89,21 @@ Using R function colnames().
 Using R function cbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 telsd | column merged test labels, subjects, data  | data.frame
 
 ### 1.12 Add a type column to the test data. Used to distinguish from training data.
 Using dplyr function mutate() and R function cbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 telsd | column merged test type, labels, subjects, data  | data.frame
 
 ### 1.13 Merge the training and test data by row.
 Using R function rbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 lsd | row merged training (trlsd) and test (tesld) data | data.frame
 
 ## Step 2: Extract only the measurements for mean and std
@@ -113,28 +113,28 @@ The general strategy is to extract the needed indices and labels from the featur
 Using R function read.table() with stringsAsFactors = FALSE
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 feat | index and name for each feature in the dataset | data.frame
 
 ### 2.2 Convert feat data.frame to a data.table in preparation for further processing.
 Using data.table function as.data.table().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 feat_table | table of index and name for every feature in the dataset | data.table data.frame
 
 ### 2.3 Extract indices for mean and std features.
 Subsetting using the R function grep().
  
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 msidx | table of index and name for mean and std features in the dataset | data.table data.frame
 
 ### 2.4 Subset the data to include only the fixed variable (type, activity, subject), mean, and std columns.
 Using R subsetting and cbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 lsdsubset | mean/std subset of training/test data | data.frame
 
 ## Step 3: Add Descriptive Activity Names
@@ -144,18 +144,18 @@ The general strategy is to extract the needed indices and names from the activit
 Using R function read.table() with stringsAsFactors = FALSE
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 actlabels | table of activity indices and names | data.frame
 
 ### 3.2 Replace the activity indices with the descriptive activity names as factors.
 Using dplyr function mutate().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 lsdsubset$activity | factor variable with descriptive activity names | factor
 
 Index | Factor
---------------
+------|-------
 1 | WALKING
 2 | WALKING_UPSTAIRS
 3 | WALKING_DOWNSTAIRS
@@ -171,8 +171,98 @@ Non-alphanumeric characters are stripped from the variable names to avoid issues
 Using the R function gsub().
 
 Variable | Description | Class
-------------------------------
-msidx$feature | column of names for mean and std features in the dataset | character
+---------|-------------|------
+msidx | table of indices and names for mean and std features in the dataset | data.table data.frame
+
+msidx detail:
+idx | feature
+------|------------
+1 |                    tBodyAccmeanX
+2 |                    tBodyAccmeanY
+3 |                    tBodyAccmeanZ
+4 |                     tBodyAccstdX
+5 |                     tBodyAccstdY
+6 |                     tBodyAccstdZ
+41 |                  tGravityAccmeanX
+42 |                  tGravityAccmeanY
+43 |                  tGravityAccmeanZ
+44 |                  tGravityAccstdX
+45 |                  tGravityAccstdY
+46 |                  tGravityAccstdZ
+81 |                tBodyAccJerkmeanX
+82 |                tBodyAccJerkmeanY
+83 |                tBodyAccJerkmeanZ
+84 |                 tBodyAccJerkstdX
+85 |                 tBodyAccJerkstdY
+86 |                 tBodyAccJerkstdZ
+121 |                   tBodyGyromeanX
+122 |                   tBodyGyromeanY
+123 |                   tBodyGyromeanZ
+124 |                    tBodyGyrostdX
+125 |                    tBodyGyrostdY
+126 |                    tBodyGyrostdZ
+161 |               tBodyGyroJerkmeanX
+162 |               tBodyGyroJerkmeanY
+163 |               tBodyGyroJerkmeanZ
+164 |                tBodyGyroJerkstdX
+165 |                tBodyGyroJerkstdY
+166 |                tBodyGyroJerkstdZ
+201 |                  tBodyAccMagmean
+202 |                   tBodyAccMagstd
+214 |               tGravityAccMagmean
+215 |                tGravityAccMagstd
+227 |              tBodyAccJerkMagmean
+228 |               tBodyAccJerkMagstd
+240 |                 tBodyGyroMagmean
+241 |                  tBodyGyroMagstd
+253 |             tBodyGyroJerkMagmean
+254 |              tBodyGyroJerkMagstd
+266 |                    fBodyAccmeanX
+267 |                    fBodyAccmeanY
+268 |                    fBodyAccmeanZ
+269 |                     fBodyAccstdX
+270 |                     fBodyAccstdY
+271 |                     fBodyAccstdZ
+294 |                fBodyAccmeanFreqX
+295 |                fBodyAccmeanFreqY
+296 |                fBodyAccmeanFreqZ
+345 |                fBodyAccJerkmeanX
+346 |                fBodyAccJerkmeanY
+347 |                fBodyAccJerkmeanZ
+348 |                 fBodyAccJerkstdX
+349 |                 fBodyAccJerkstdY
+350 |                 fBodyAccJerkstdZ
+373 |            fBodyAccJerkmeanFreqX
+374 |            fBodyAccJerkmeanFreqY
+375 |            fBodyAccJerkmeanFreqZ
+424 |                   fBodyGyromeanX
+425 |                   fBodyGyromeanY
+426 |                   fBodyGyromeanZ
+427 |                    fBodyGyrostdX
+428 |                    fBodyGyrostdY
+429 |                    fBodyGyrostdZ
+452 |               fBodyGyromeanFreqX
+453 |               fBodyGyromeanFreqY
+454 |               fBodyGyromeanFreqZ
+503 |                  fBodyAccMagmean
+504 |                   fBodyAccMagstd
+513 |              fBodyAccMagmeanFreq
+516 |          fBodyBodyAccJerkMagmean
+517 |           fBodyBodyAccJerkMagstd
+526 |      fBodyBodyAccJerkMagmeanFreq
+529 |             fBodyBodyGyroMagmean
+530 |              fBodyBodyGyroMagstd
+539 |         fBodyBodyGyroMagmeanFreq
+542 |         fBodyBodyGyroJerkMagmean
+543 |          fBodyBodyGyroJerkMagstd
+552 |     fBodyBodyGyroJerkMagmeanFreq
+555 |         angletBodyAccMeangravity
+556 | angletBodyAccJerkMeangravityMean
+557 |    angletBodyGyroMeangravityMean
+558 |angletBodyGyroJerkMeangravityMean
+559 |                angleXgravityMean
+560 |                angleYgravityMean
+561 |                angleZgravityMean
 
 ### 4.2 Apply the feature names as names of variable columns.
 Using R function colnames().
@@ -184,12 +274,12 @@ tidy principles dictate that it should be ordered by the fixed variables. Here i
 sense to order by type first, as in most real world analysis, one would want to
 separate the training and test data. Next, order by activity, as it seems likely that 
 the intent may be to use data across many subjects for a given activity to derive 
-some generalized modelfor that activity. Finally, order by subject._
+some generalized model for that activity. Finally, order by subject._
 
 Using the dplyr function arrange().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 lsdsubset | mean and std data ordered by type/activity/subject | data.frame
 
 ## Step 5: Average for each variable by activity and subject
@@ -199,7 +289,7 @@ Note there are 6 activities and 30 subjects.
 Using dplyr functions group_by() and summary() and the pipeline operator %>%.
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 sumbysub | table of means of variables grouped by subject | tbl_df tbl data.frame
 sumbyact | table of means of variables grouped by activity | tbl_df tbl data.frame
 
@@ -210,7 +300,7 @@ Using R function colnames().
 Using R function rbind().
 
 Variable | Description | Class
-------------------------------
+---------|-------------|------
 summarydata | combined table of grouped means | tbl_df tbl data.frame
 summarydata[1:6,] | table of means of variables grouped by activity | tbl_df tbl data.frame
 summarydata[7:36,] | table of means of variables grouped by subject | tbl_df tbl data.frame
@@ -219,12 +309,13 @@ summarydata[7:36,] | table of means of variables grouped by subject | tbl_df tbl
 Using R function write.table() with row.names=FALSE
 
 Name | Description
-------------------
+-----|------------
 cleaning_data_project.txt | Output file, includes summary data grouped by activity and subject.
 
 Note to reviewers:
 The output file can be read into R with:
 
 ```R
+    outfile <- "./cleaning_data_project.txt"
     valdata <- read.table(outfile, header=TRUE)
 ```    
