@@ -20,17 +20,19 @@ See the [./CodeBook.md](./CodeBook.md) file for additional information about the
 ```R
     source("run_analysis.R")
 ```
-3. Final result located at ./cleaning_data_project.txt
 
+Final result located at ./cleaning_data_project.txt
 
-## Further Instructions for Assessors
-The final (Step 5) summary data is included in the cleaning_data_project.txt file.
+## Further Instructions for Reviewers
+The Step 5 summary data is included in the cleaning_data_project.txt file.
+
 1. Copy this file to your working directory.
 2. open the file in R with:
 ```R
     outfile <- "./cleaning_data_project.txt"
     sumdata <- read.table(outfile, header=TRUE)
 ```
-3. See [CodeBook.md](./CodeBook.md) for a description of the data and variables.
+
+See [CodeBook.md](./CodeBook.md) for a description of the data and variables.
 
 
